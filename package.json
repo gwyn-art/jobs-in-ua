@@ -1,0 +1,21 @@
+{
+  "name": "work-in-ua",
+  "version": "0.0.1",
+  "description": "Jobs in UA listing",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "update": "node src/actionts/index.js update",
+    "build": "node src/actionts/index.js build"
+  },
+  "author": "gwyn-art",
+  "license": "ISC",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0",
+    "dotenv": "^16.5.0",
+    "google-auth-library": "^9.15.1",
+    "google-spreadsheet": "^4.1.4",
+    "node-html-parser": "^7.0.1",
+    "pg": "^8.16.0"
+  }
+}
