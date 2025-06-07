@@ -17,15 +17,15 @@
         body {
             font-family: 'Roboto Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.4;
-            color: #1a1a1a;
-            background-color: #faf9f7;
+            color: #ECDFCC;
+            background-color: #181C14;
             padding: 20px;
             font-stretch: condensed;
         }
 
         h1 {
             text-align: center;
-            color: #000;
+            color: #ECDFCC;
             margin: 0 auto 20px auto;
             font-size: 3rem;
             padding: 5px 15px;
@@ -46,14 +46,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(255, 107, 53, 0.3);
+            background-color: rgba(105, 117, 101, 0.3);
             z-index: 1;
             pointer-events: none;
         }
 
         body > p {
             text-align: center;
-            color: #000;
+            color: #ECDFCC;
             margin-bottom: 40px;
             font-size: 1.3rem;
             padding: 3px 10px;
@@ -105,8 +105,8 @@
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.2s ease;
-            background: #faf9f7;
-            color: #1a1a1a;
+            background: #3C3D37;
+            color: #ECDFCC;
             font-family: 'Roboto Condensed', sans-serif;
             font-weight: 600;
             text-transform: uppercase;
@@ -115,8 +115,8 @@
 
         #searchInput:focus, #companyFilter:focus {
             outline: none;
-            border-color: #ff6b35;
-            background-color: #fff;
+            border-color: #697565;
+            background-color: #3C3D37;
         }
 
         #searchInput::placeholder {
@@ -132,7 +132,7 @@
         }
 
         .vacancy {
-            background: #fff;
+            background: #3C3D37;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -142,11 +142,11 @@
 
         .vacancy:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
+            box-shadow: 0 10px 40px rgba(105, 117, 101, 0.2);
         }
 
         .vacancy h2 {
-            color: #000;
+            color: #ECDFCC;
             margin-bottom: 15px;
             font-size: 1.8rem;
             font-family: 'Roboto Condensed', sans-serif;
@@ -167,13 +167,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(255, 107, 53, 0.3);
+            background-color: rgba(105, 117, 101, 0.3);
             z-index: 1;
             pointer-events: none;
         }
 
         .vacancy h3 {
-            color: #000;
+            color: #ECDFCC;
             margin-bottom: 20px;
             font-size: 1.3rem;
             font-family: 'JetBrains Mono', monospace;
@@ -184,6 +184,7 @@
             letter-spacing: 1px;
             position: relative;
             z-index: 1;
+            margin-left: 8px;
         }
 
         .vacancy h3::after {
@@ -200,7 +201,7 @@
 
         .vacancy p {
             margin-bottom: 15px;
-            color: #333;
+            color: #ECDFCC;
             line-height: 1.6;
             font-size: 1rem;
         }
@@ -209,10 +210,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: #faf9f7;
+            color: #ECDFCC;
             text-decoration: none;
-            background-color: #ff6b35;
-            border: 3px solid #1a1a1a;
             padding: 12px 20px;
             border-radius: 8px;
             font-family: 'Roboto Condensed', sans-serif;
@@ -222,12 +221,25 @@
             margin-top: 15px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            position: relative;
+            z-index: 0;
         }
 
         .vacancy a:hover {
-            background-color: #1a1a1a;
-            color: #faf9f7;
+            color: #ECDFCC;
             transform: scale(1.05);
+        }
+
+        .vacancy a:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(105, 117, 101, 0.3);
+            z-index: 1;
+            pointer-events: none;
         }
 
         .vacancy a::after {
@@ -280,7 +292,6 @@
 </head>
 <body>
     <h1>My Job List</h1>
-    <p>My Job List is a curated job listing website for Ukrainian jobs.</p>
 
     <div class="controls">
         <div class="search-container">
