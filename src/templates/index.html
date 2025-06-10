@@ -369,6 +369,39 @@
             const vacanciesList = document.getElementById('vacanciesList');
             const allVacancies = Array.from(vacanciesList.children);
 
+            // URL state management
+            function getUrlParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    search: params.get('search') || '',
+                    company: params.get('company') || '',
+                    tech: params.get('tech') || ''
+                };
+            }
+
+            function updateUrl(search, company, tech) {
+                const params = new URLSearchParams();
+                
+                if (search) params.set('search', search);
+                if (company) params.set('company', company);
+                if (tech) params.set('tech', tech);
+                
+                const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+                window.history.replaceState({}, '', newUrl);
+            }
+
+            // Initialize filters from URL
+            function initializeFromUrl() {
+                const urlParams = getUrlParams();
+                
+                searchInput.value = urlParams.search;
+                companyFilter.value = urlParams.company;
+                techFilter.value = urlParams.tech;
+                
+                // Apply initial filtering
+                filterVacancies();
+            }
+
             // Fuzzy search function using Levenshtein distance
             function fuzzyMatch(pattern, text, threshold = 0.6) {
                 if (!pattern) return true;
@@ -435,6 +468,9 @@
                 const selectedCompany = companyFilter.value;
                 const selectedTech = techFilter.value;
 
+                // Update URL with current filter state
+                updateUrl(searchInput.value.trim(), selectedCompany, selectedTech);
+
                 allVacancies.forEach(vacancy => {
                     const title = vacancy.getAttribute('data-title');
                     const company = vacancy.getAttribute('data-company');
@@ -459,6 +495,9 @@
             searchInput.addEventListener('input', filterVacancies);
             companyFilter.addEventListener('change', filterVacancies);
             techFilter.addEventListener('change', filterVacancies);
+
+            // Initialize filters from URL on page load
+            initializeFromUrl();
         });
     </script>
 </body>
