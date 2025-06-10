@@ -42,10 +42,74 @@ const LYFT = (root) => {
     })
 }
 
+const GRAMMARLY = (root) => {
+    const jobs = [];
+    
+    if (root.departments && Array.isArray(root.departments)) {
+        for (const department of root.departments) {
+            if (department.jobs && Array.isArray(department.jobs) && department.jobs.length > 0) {
+                for (const job of department.jobs) {
+                    const parsedJob = {
+                        location: formatGrammarlyLocation(job.location),
+                        title: job.title || 'Unknown Position',
+                        description: formatGrammarlyDescription(job),
+                        url: job.absolute_url || ''
+                    };
+
+                    const locationCmpr = parsedJob.location.toLowerCase();
+                    if (!parsedJob.title || (!locationCmpr.includes('kyiv') && !locationCmpr.includes('ukraine'))) {
+                        continue;
+                    }
+
+                    jobs.push(parsedJob);
+                }
+            }
+        }
+    }
+
+    return jobs;
+}
+
+const formatGrammarlyLocation = (locationData) => {
+    if (!locationData) return 'Remote';
+
+    if (typeof locationData === 'string') {
+        return locationData;
+    }
+
+    if (locationData.name) {
+        const location = locationData.name;
+        const isHybrid = locationData.hybrid || false;
+        return isHybrid ? `${location} (Hybrid)` : location;
+    }
+
+    return 'Remote';
+};
+
+const formatGrammarlyDescription = (job) => {
+    const parts = [];
+
+    if (job.metadata?.department) {
+        parts.push(`Department: ${job.metadata.department}`);
+    }
+
+    if (job.metadata?.job_level) {
+        parts.push(`Level: ${job.metadata.job_level}`);
+    }
+
+    if (job.first_published) {
+        const publishDate = new Date(job.first_published).toLocaleDateString();
+        parts.push(`Posted: ${publishDate}`);
+    }
+
+    return parts.length > 0 ? parts.join(' | ') : null;
+};
+
 
 const parsers = {
     LUN,
-    LYFT
+    LYFT,
+    GRAMMARLY
 }
 
 /**

@@ -8,5 +8,10 @@ export const sourceList = [
         company: "LYFT",
         type: 'json',
         url: "https://api.greenhouse.io/v1/boards/lyft/jobs?content=true"
+    },
+    {
+        company: "GRAMMARLY",
+        type: 'json',
+        url: "https://api.greenhouse.io/v1/boards/grammarly/embed/departments"
     }
 ]
